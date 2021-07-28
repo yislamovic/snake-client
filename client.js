@@ -11,6 +11,13 @@ const connect = function () {
   conn.on('data', function(data) {
     console.log(data);
   })
+
+  conn.on('connect', function(){
+    console.log("Welcome to the family son.");
+  })
+  conn.on('connect', function(){
+    conn.write('Name: YIL');
+  })
   return conn;
 };
 module.exports = {connect};
