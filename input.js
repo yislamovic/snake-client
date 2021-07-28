@@ -1,6 +1,6 @@
 const {connect} = require("./client");
+let connection;
 const handleUserInput = function (key){
-  let conn = connect();
   console.log("Connecting ...");
   console.log(key);
   if(key === '\u0003'){
@@ -8,23 +8,24 @@ const handleUserInput = function (key){
   }
   //up
   if(key === 'w'){
-    conn.write('Move: up');
+    connection.write('Move: up');
   }
   //leftw
   if(key === 'a'){
-    conn.write('Move: left');
+    connection.write('Move: left');
   }
   //right
   if(key === 'd'){
-    conn.write('Move: right');
+    connection.write('Move: right');
   }
   //down
   if(key === 's'){
-    conn.write('Move: down');
+    connection.write('Move: down');
   }
 }
 
-const setupInput = function () {
+const setupInput = function (conn) {
+  connection = connect();
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
